@@ -77,7 +77,7 @@ export function Today() {
       <div className="card">
         <div className="meal-head">
           <div>
-            <h3>Agua</h3>
+            <h3 className="row" style={{ gap: 6 }}><Icon name="water" size={16} /> Agua</h3>
             <span className="muted small">{(waterMl / 1000).toFixed(2)} / {(waterGoal / 1000).toFixed(1)} L</span>
           </div>
           <div className="row">

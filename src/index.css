@@ -104,7 +104,7 @@ label.field { display: flex; flex-direction: column; gap: 6px; font-size: 13px; 
 .sheet-body { padding: 8px 20px 24px; overflow-y: auto; }
 
 .seg { display: flex; gap: 20px; border-bottom: 1px solid var(--line); margin-bottom: 16px; }
-.seg button { border: 0; background: transparent; padding: 10px 0; cursor: pointer; font-size: 14px; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.seg button { display: inline-flex; align-items: center; gap: 6px; border: 0; background: transparent; padding: 10px 0; cursor: pointer; font-size: 14px; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; }
 .seg button.active { color: var(--text); border-bottom-color: var(--text); }
 
 .list-item { display: flex; justify-content: space-between; align-items: center; padding: 13px 2px; cursor: pointer; border: 0; border-bottom: 1px solid var(--line); background: transparent; width: 100%; text-align: left; }

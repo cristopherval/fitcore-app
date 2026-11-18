@@ -13,8 +13,8 @@ export function AddFood({ date, meal, onClose }: { date: string; meal: MealKey; 
   return (
     <Sheet title={`Añadir a ${label}`} onClose={onClose}>
       <div className="seg">
-        <button className={mode === 'search' ? 'active' : ''} onClick={() => setMode('search')}>Buscar</button>
-        <button className={mode === 'manual' ? 'active' : ''} onClick={() => setMode('manual')}>Manual</button>
+        <button className={mode === 'search' ? 'active' : ''} onClick={() => setMode('search')}><Icon name="search" size={16} /> Buscar</button>
+        <button className={mode === 'manual' ? 'active' : ''} onClick={() => setMode('manual')}><Icon name="pencil" size={16} /> Manual</button>
       </div>
       {mode === 'search' && <SearchMode date={date} meal={meal} onDone={onClose} />}
       {mode === 'manual' && <ManualMode date={date} meal={meal} onDone={onClose} />}
