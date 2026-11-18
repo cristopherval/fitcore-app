@@ -7,7 +7,7 @@ export const MEALS: { key: MealKey; label: string; share: number }[] = [
   { key: 'snack', label: 'Snacks', share: 0.15 },
 ]
 
-export type FoodCategory = 'protein' | 'carb' | 'fat' | 'veg' | 'fruit' | 'dairy' | 'typical' | 'drink' | 'other'
+export type FoodCategory = 'protein' | 'carb' | 'fat' | 'veg' | 'fruit' | 'dairy' | 'typical' | 'drink' | 'supplement' | 'other'
 
 /** Medida casera: para quien no tiene balanza. */
 export interface Unit {

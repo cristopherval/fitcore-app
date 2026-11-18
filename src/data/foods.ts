@@ -82,7 +82,6 @@ const rows: Row[] = [
   ['pavo', 'Jamón de pavo', 'protein', 104, 17, 4, 2, [u('lonja', 20)]],
   ['salchicha', 'Salchicha', 'protein', 290, 11, 3, 26, [u('salchicha', 45)], 'wiener'],
   ['tofu', 'Tofu firme', 'protein', 144, 17.3, 2.8, 8.7, [u('taza en cubos', 250), u('1/2 taza', 125)]],
-  ['whey', 'Proteína en polvo (whey)', 'protein', 400, 80, 8, 6, [u('medida (scoop)', 30)]],
 
   // ── Lácteos ──────────────────────────────────────────────────────────
   ['yogur-griego', 'Yogur griego natural 0%', 'dairy', 59, 10.2, 3.6, 0.4, [u('pote', 170), u('taza', 245), u('cucharada', 15)]],
@@ -199,6 +198,24 @@ const rows: Row[] = [
   ['cerveza', 'Cerveza (Salva Vida, Imperial, Port Royal, Barena)', 'drink', 43, 0.4, 3.5, 0, [BOTELLA_VIDRIO, LATA], 'birra'],
   ['cerveza-light', 'Cerveza light', 'drink', 29, 0.2, 1.3, 0, [BOTELLA_VIDRIO, LATA]],
 
+  // ── Suplementos ──────────────────────────────────────────────────────
+  // Valores típicos de etiqueta; cada marca cambia, revisa la tuya.
+  ['whey', 'Proteína whey (concentrado)', 'supplement', 400, 80, 8, 6, [u('medida (scoop)', 30)], 'proteina en polvo batido'],
+  ['whey-iso', 'Proteína whey isolate', 'supplement', 370, 90, 2, 1, [u('medida (scoop)', 30)], 'proteina aislada isolatada'],
+  ['proteina-vegetal', 'Proteína vegetal (arveja / soya)', 'supplement', 380, 75, 10, 6, [u('medida (scoop)', 33)], 'proteina vegana'],
+  ['caseina', 'Caseína', 'supplement', 360, 80, 8, 2, [u('medida (scoop)', 33)], 'proteina nocturna'],
+  ['gainer', 'Ganador de peso (mass gainer)', 'supplement', 380, 15, 75, 3, [u('medida (scoop)', 50)], 'gainer hipercalorico'],
+  ['batido-rtd', 'Batido de proteína listo para tomar', 'supplement', 60, 10, 3, 1, [u('botella 330 ml', 330)], 'proteina liquida shake'],
+  ['barra-proteina', 'Barra de proteína', 'supplement', 360, 30, 38, 11, [u('barra', 60)], 'protein bar'],
+  ['creatina', 'Creatina monohidratada', 'supplement', 0, 0, 0, 0, [u('medida (5 g)', 5), u('cucharadita', 5)], 'creatine'],
+  ['colageno', 'Colágeno hidrolizado', 'supplement', 360, 90, 0, 0, [u('medida (10 g)', 10)], 'colageno'],
+  ['bcaa', 'Aminoácidos BCAA', 'supplement', 100, 25, 0, 0, [u('medida (7 g)', 7)], 'aminoacidos'],
+  ['preentreno', 'Pre-entreno', 'supplement', 40, 0, 10, 0, [u('medida (scoop)', 10)], 'pre workout preentreno'],
+  ['electrolitos', 'Electrolitos sin azúcar', 'supplement', 0, 0, 0, 0, [u('sobre', 5)], 'suero hidratante'],
+  ['omega3', 'Omega 3 (cápsula)', 'supplement', 900, 0, 0, 100, [u('cápsula', 1.2)], 'aceite de pescado'],
+  ['multivitaminico', 'Multivitamínico', 'supplement', 0, 0, 0, 0, [u('tableta', 1.5)], 'vitaminas'],
+  ['vitamina-d', 'Vitamina D', 'supplement', 0, 0, 0, 0, [u('cápsula', 0.5)], 'vitaminas'],
+
   // ── Otros ────────────────────────────────────────────────────────────
   ['azucar', 'Azúcar', 'other', 387, 0, 100, 0, [u('cucharadita', 4)]],
   ['miel', 'Miel', 'other', 304, 0.3, 82.4, 0, [u('cucharada', 21)]],
@@ -225,6 +242,7 @@ export const FOOD_GROUPS: { key: string; label: string; cats: FoodCategory[] }[]
   { key: 'all', label: 'Todo', cats: [] },
   { key: 'typical', label: 'Típicos', cats: ['typical'] },
   { key: 'drink', label: 'Bebidas', cats: ['drink'] },
+  { key: 'supplement', label: 'Suplementos', cats: ['supplement'] },
   { key: 'protein', label: 'Proteínas', cats: ['protein', 'dairy'] },
   { key: 'carb', label: 'Carbohidratos', cats: ['carb'] },
   { key: 'plants', label: 'Frutas y verduras', cats: ['fruit', 'veg'] },
