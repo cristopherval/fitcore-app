@@ -25,28 +25,28 @@ interface Template {
 
 const TEMPLATES: Record<MealKey, Template> = {
   desayuno: {
-    protein: ['huevo', 'clara', 'yogur-griego', 'queso-fresco', 'pavo', 'cottage'],
-    carb: ['avena', 'pan-int', 'tortilla-maiz', 'arepa', 'pan'],
-    fat: ['palta', 'mani-mant', 'almendras', 'chia'],
-    fixed: [['platano', 'fresas', 'papaya', 'manzana', 'mandarina', 'arandanos', 'pina']],
+    protein: ['huevo', 'clara', 'yogur-griego', 'queso-fresco', 'pavo', 'cottage', 'queso-duro', 'cuajada', 'huevo-revuelto'],
+    carb: ['avena', 'pan-int', 'tortilla-maiz', 'tortilla-trigo', 'frijoles-fritos', 'platano-maduro', 'pan'],
+    fat: ['palta', 'mani-mant', 'almendras', 'chia', 'mantequilla-crema'],
+    fixed: [['platano', 'fresas', 'papaya', 'manzana', 'mandarina', 'mango', 'melon', 'pina']],
   },
   almuerzo: {
-    protein: ['pollo', 'res', 'pescado', 'salmon', 'atun', 'cerdo', 'molida', 'camaron'],
-    carb: ['arroz', 'arroz-int', 'papa', 'camote', 'quinua', 'pasta', 'frijoles', 'lentejas', 'yuca', 'choclo'],
+    protein: ['pollo', 'res', 'carne-asada', 'pescado', 'muslo', 'atun', 'cerdo', 'molida', 'camaron'],
+    carb: ['arroz', 'arroz-frito', 'papa', 'camote', 'frijoles', 'frijoles-fritos', 'tortilla-maiz', 'guineo-verde', 'pasta', 'lentejas', 'yuca', 'choclo'],
     fat: ['aceite', 'palta'],
-    fixed: [['ensalada', 'brocoli', 'vainitas', 'zapallito', 'salteado', 'espinaca']],
+    fixed: [['ensalada', 'encurtido', 'chismol', 'brocoli', 'vainitas', 'zapallito', 'salteado', 'repollo']],
   },
   cena: {
     protein: ['pollo', 'pescado', 'huevo', 'atun', 'tofu', 'cerdo', 'camaron'],
-    carb: ['tortilla-maiz', 'camote', 'papa', 'quinua', 'arroz', 'pan-int', 'garbanzos'],
-    fat: ['aceite', 'palta', 'queso-fresco'],
-    fixed: [['ensalada', 'brocoli', 'salteado', 'champinones', 'zapallito', 'pimiento']],
+    carb: ['tortilla-maiz', 'tortilla-trigo', 'frijoles-fritos', 'camote', 'papa', 'arroz', 'pan-int', 'guineo-verde'],
+    fat: ['aceite', 'palta', 'queso-fresco', 'mantequilla-crema'],
+    fixed: [['ensalada', 'chismol', 'encurtido', 'brocoli', 'salteado', 'champinones', 'pimiento']],
   },
   snack: {
     protein: ['yogur-griego', 'cottage', 'whey', 'huevo', 'queso-fresco'],
     carb: ['galleta-arroz', 'avena', 'granola', 'pan-int'],
     fat: ['almendras', 'nueces', 'mani', 'mani-mant'],
-    fixed: [['manzana', 'platano', 'pera', 'fresas', 'uvas', 'naranja']],
+    fixed: [['manzana', 'platano', 'pera', 'mango', 'sandia', 'naranja', 'nance']],
   },
 }
 
@@ -57,7 +57,8 @@ const MAX_BY_ID: Record<string, number> = {
   pavo: 80, 'queso-fresco': 90, mozzarella: 75, huevo: 200, clara: 200, whey: 45,
   'mani-mant': 32, almendras: 40, nueces: 35, mani: 40, chia: 24, aceite: 15, palta: 105,
   'galleta-arroz': 36, granola: 60, avena: 80, 'pan-int': 90, pan: 80, 'tortilla-maiz': 120,
-  'tortilla-trigo': 90, arepa: 180, cottage: 230, 'yogur-griego': 340, salmon: 200,
+  'tortilla-trigo': 140, 'frijoles-fritos': 240, 'mantequilla-crema': 45, 'queso-duro': 60,
+  cuajada: 120, 'carne-asada': 200, 'arroz-frito': 320, 'platano-maduro': 150, 'huevo-revuelto': 240, arepa: 180, cottage: 230, 'yogur-griego': 340, salmon: 200,
 }
 
 const pick = <T,>(arr: T[], rnd: () => number): T => arr[Math.floor(rnd() * arr.length)]

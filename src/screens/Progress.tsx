@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Bar, BarChart, CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { Icon } from '../components/ui'
 import { addDays, sumMacros, today } from '../lib/nutrition'
 import { useStore } from '../store'
 
@@ -63,7 +64,7 @@ export function Progress() {
             {[...weights].reverse().map((w) => (
               <div className="food-row" key={w.date}>
                 <span className="grow">{w.date}</span><strong>{w.kg} kg</strong>
-                <button className="icon-btn" onClick={() => removeWeight(w.date)} aria-label={`Borrar peso del ${w.date}`}>🗑</button>
+                <button className="icon-btn" onClick={() => removeWeight(w.date)} aria-label={`Borrar peso del ${w.date}`}><Icon name="x" size={16} /></button>
               </div>
             ))}
           </details>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { MacroBars, MacroLine } from '../components/ui'
+import { Icon, MacroBars, MacroLine } from '../components/ui'
 import { generateDay, generateMeal, seeded, type PlanMeal } from '../lib/planner'
 import { sumMacros, today, uid } from '../lib/nutrition'
 import { useStore } from '../store'
@@ -40,9 +40,8 @@ export function Plan() {
       </div>
 
       {!plan ? (
-        <div className="card stack" style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: 40 }}>🥗</div>
-          <p>Genera un menú del día con porciones en medidas caseras (tazas, cucharadas, unidades), sin necesidad de balanza.</p>
+        <div className="card stack">
+          <p style={{ margin: 0 }}>Genera un menú del día con porciones en medidas caseras (tazas, cucharadas, unidades), sin necesidad de balanza.</p>
           <button className="btn block" onClick={regenerateDay}>Generar mi plan</button>
         </div>
       ) : (
@@ -53,7 +52,7 @@ export function Plan() {
                 <div className="big-num">{Math.round(totals!.kcal)} kcal</div>
                 <span className="muted small">meta {targets.kcal} kcal</span>
               </div>
-              <button className="btn sm ghost" onClick={regenerateDay}>🔄 Nuevo plan</button>
+              <button className="btn sm ghost" onClick={regenerateDay}><Icon name="refresh" size={16} /> Nuevo plan</button>
             </div>
             <MacroBars value={totals!} goal={targets} />
           </div>
@@ -65,7 +64,7 @@ export function Plan() {
                   <h3>{MEALS[idx].label}</h3>
                   <MacroLine m={m.totals} />
                 </div>
-                <button className="icon-btn" onClick={() => regenerateMeal(idx)} aria-label={`Cambiar ${MEALS[idx].label}`} title="Cambiar">🔄</button>
+                <button className="icon-btn" onClick={() => regenerateMeal(idx)} aria-label={`Cambiar ${MEALS[idx].label}`} title="Cambiar"><Icon name="refresh" size={18} /></button>
               </div>
               <div style={{ marginTop: 8 }}>
                 {m.items.map((it) => (
@@ -78,7 +77,7 @@ export function Plan() {
                 ))}
               </div>
               <button className="btn sm soft" style={{ marginTop: 8 }} onClick={() => { addEntries(toEntries(m)); flash(`${MEALS[idx].label} añadido a hoy`) }}>
-                ✓ Lo comí — añadir a hoy
+                <Icon name="check" size={16} /> Lo comí
               </button>
             </div>
           ))}
@@ -90,9 +89,7 @@ export function Plan() {
       )}
 
       {added && (
-        <div style={{ position: 'fixed', bottom: 90, left: 16, right: 16, display: 'flex', justifyContent: 'center', zIndex: 30 }}>
-          <div className="notice" style={{ boxShadow: 'var(--shadow)' }}>✓ {added}</div>
-        </div>
+        <div className="toast" role="status"><Icon name="check" size={16} /> {added}</div>
       )}
     </>
   )

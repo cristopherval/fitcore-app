@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { MacroLine, Sheet } from '../components/ui'
-import { searchFoods } from '../data/foods'
+import { Icon, MacroLine, Sheet } from '../components/ui'
+import { FOOD_GROUPS, searchFoods } from '../data/foods'
 import { macrosFor, uid, unitText } from '../lib/nutrition'
 import { useStore } from '../store'
 import { MEALS, type Food, type MealKey } from '../types'
@@ -13,8 +13,8 @@ export function AddFood({ date, meal, onClose }: { date: string; meal: MealKey; 
   return (
     <Sheet title={`Añadir a ${label}`} onClose={onClose}>
       <div className="seg">
-        <button className={mode === 'search' ? 'active' : ''} onClick={() => setMode('search')}>🔎 Buscar</button>
-        <button className={mode === 'manual' ? 'active' : ''} onClick={() => setMode('manual')}>✏️ Manual</button>
+        <button className={mode === 'search' ? 'active' : ''} onClick={() => setMode('search')}>Buscar</button>
+        <button className={mode === 'manual' ? 'active' : ''} onClick={() => setMode('manual')}>Manual</button>
       </div>
       {mode === 'search' && <SearchMode date={date} meal={meal} onDone={onClose} />}
       {mode === 'manual' && <ManualMode date={date} meal={meal} onDone={onClose} />}
@@ -24,6 +24,7 @@ export function AddFood({ date, meal, onClose }: { date: string; meal: MealKey; 
 
 function SearchMode({ date, meal, onDone }: { date: string; meal: MealKey; onDone: () => void }) {
   const [q, setQ] = useState('')
+  const [group, setGroup] = useState('all')
   const [food, setFood] = useState<Food | null>(null)
   const [unitIdx, setUnitIdx] = useState(0)
   const [qty, setQty] = useState(1)
@@ -35,7 +36,7 @@ function SearchMode({ date, meal, onDone }: { date: string; meal: MealKey; onDon
     const m = macrosFor(food, grams)
     return (
       <div className="stack">
-        <button className="btn sm ghost" style={{ alignSelf: 'flex-start' }} onClick={() => setFood(null)}>‹ Volver</button>
+        <button className="btn sm ghost" style={{ alignSelf: 'flex-start' }} onClick={() => setFood(null)}><Icon name="left" size={16} /> Volver</button>
         <h3>{food.name}</h3>
         <div className="grid2">
           <label className="field">Cantidad
@@ -49,7 +50,7 @@ function SearchMode({ date, meal, onDone }: { date: string; meal: MealKey; onDon
               setQty(food.units[i].grams === 1 ? 100 : 1)
             }}>
               {food.units.map((un, i) => (
-                <option key={un.label} value={i}>{un.grams === 1 ? 'gramos' : `${un.label} (~${un.grams} g)`}</option>
+                <option key={un.label} value={i}>{un.grams === 1 ? 'gramos / ml' : `${un.label} (~${un.grams} g)`}</option>
               ))}
             </select>
           </label>
@@ -73,20 +74,26 @@ function SearchMode({ date, meal, onDone }: { date: string; meal: MealKey; onDon
     )
   }
 
-  const results = searchFoods(q).slice(0, 40)
+  const results = searchFoods(q, group).slice(0, 60)
   return (
     <div>
-      <input className="input" autoFocus placeholder="Buscar alimento (ej. arroz, huevo, palta)…" value={q} onChange={(e) => setQ(e.target.value)} style={{ marginBottom: 12 }} />
+      <input className="input" autoFocus placeholder="Buscar (baleada, frijoles, Coca-Cola…)" value={q} onChange={(e) => setQ(e.target.value)} style={{ marginBottom: 12 }} />
+      <div className="chips" style={{ flexWrap: 'nowrap', overflowX: 'auto', marginBottom: 8, paddingBottom: 4 }}>
+        {FOOD_GROUPS.map((g) => (
+          <button key={g.key} className={`chip ${group === g.key ? 'active' : ''}`} style={{ flexShrink: 0 }} onClick={() => setGroup(g.key)}>{g.label}</button>
+        ))}
+      </div>
       {results.map((fd) => (
         <button key={fd.id} className="list-item" onClick={() => { setFood(fd); setUnitIdx(0); setQty(1) }}>
           <div>
             <div>{fd.name}</div>
             <span className="muted small">{fd.units[0].label} ≈ {Math.round(macrosFor(fd, fd.units[0].grams).kcal)} kcal</span>
           </div>
-          <span className="muted">›</span>
+          <span className="muted"><Icon name="right" size={16} /></span>
         </button>
       ))}
-      {results.length === 0 && <p className="muted">No está en la lista. Regístralo en ✏️ Manual.</p>}
+      {results.length === 0 && <p className="muted">No está en la lista. Regístralo en Manual.</p>}
+      <p className="muted small" style={{ marginTop: 16 }}>Valores aproximados. Si el empaque trae tabla nutricional, usa esos datos en Manual.</p>
     </div>
   )
 }

@@ -53,7 +53,7 @@ export function pluralize(label: string): string {
   let stop = false
   return words
     .map((w) => {
-      if (stop || ['de', 'en'].includes(w) || w.startsWith('(')) { stop = true; return w }
+      if (stop || ['de', 'en'].includes(w) || w.startsWith('(') || /^\d/.test(w)) { stop = true; return w }
       return pluralWord(w)
     })
     .join(' ')

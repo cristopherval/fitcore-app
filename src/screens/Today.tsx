@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { MacroBars, MacroLine, Ring } from '../components/ui'
+import { Icon, MacroBars, MacroLine, Ring } from '../components/ui'
 import { addDays, sumMacros, today } from '../lib/nutrition'
 import { useStore } from '../store'
 import { MEALS, type MealKey } from '../types'
@@ -30,9 +30,9 @@ export function Today() {
           <span className="muted small">{Math.round(totals.kcal)} / {targets.kcal} kcal</span>
         </div>
         <div className="date-nav">
-          <button className="icon-btn" onClick={() => setDate(addDays(date, -1))} aria-label="Día anterior">‹</button>
+          <button className="icon-btn" onClick={() => setDate(addDays(date, -1))} aria-label="Día anterior"><Icon name="left" size={18} /></button>
           <button className="btn sm ghost" onClick={() => setDate(today())}>{formatDay(date)}</button>
-          <button className="icon-btn" onClick={() => setDate(addDays(date, 1))} aria-label="Día siguiente">›</button>
+          <button className="icon-btn" onClick={() => setDate(addDays(date, 1))} aria-label="Día siguiente"><Icon name="right" size={18} /></button>
         </div>
       </div>
 
@@ -51,7 +51,7 @@ export function Today() {
                 <h3>{m.label}</h3>
                 <span className="muted small">{Math.round(sub.kcal)} / {Math.round(targets.kcal * m.share)} kcal</span>
               </div>
-              <button className="btn sm soft" onClick={() => setAdding(m.key)}>+ Añadir</button>
+              <button className="btn sm soft" onClick={() => setAdding(m.key)}><Icon name="plus" size={16} /> Añadir</button>
             </div>
             {list.length > 0 && (
               <div style={{ marginTop: 8 }}>
@@ -65,7 +65,7 @@ export function Today() {
                       <div className="muted small">{e.measure ? `${e.measure} · ` : ''}{Math.round(e.grams)} g</div>
                       <MacroLine m={e} />
                     </div>
-                    <button className="icon-btn" onClick={() => removeEntry(e.id)} aria-label={`Eliminar ${e.name}`}>🗑</button>
+                    <button className="icon-btn" onClick={() => removeEntry(e.id)} aria-label={`Eliminar ${e.name}`}><Icon name="x" size={16} /></button>
                   </div>
                 ))}
               </div>
@@ -81,8 +81,8 @@ export function Today() {
             <span className="muted small">{(waterMl / 1000).toFixed(2)} / {(waterGoal / 1000).toFixed(1)} L</span>
           </div>
           <div className="row">
-            <button className="btn sm ghost" onClick={() => addWater(date, -250)} aria-label="Quitar un vaso">−</button>
-            <button className="btn sm soft" onClick={() => addWater(date, 250)}>+ 1 vaso</button>
+            <button className="btn sm ghost" onClick={() => addWater(date, -250)} aria-label="Quitar un vaso"><Icon name="minus" size={16} /></button>
+            <button className="btn sm soft" onClick={() => addWater(date, 250)}><Icon name="plus" size={16} /> Vaso</button>
           </div>
         </div>
         <div className="bar" style={{ marginTop: 10 }}>
